@@ -1,6 +1,8 @@
 Changes for LaTeX::ToUnicode
 
-$(NEXT)
+{{$NEXT}}
+
+0.02    2010/07/09
         Handle accents with \i
         Add script used to generate accents table
 
