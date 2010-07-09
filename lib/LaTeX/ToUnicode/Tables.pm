@@ -66,7 +66,7 @@ our %SYMBOLS = ( # Table 3.2 in Lamport
 Two-level hash of accented characters like C<\'{a}>. The keys of this hash
 are the accent symbols, e.g C<`>, C<"> or C<'>. The corresponding values are
 references to hashes, where the keys are the base letters and the values are
-the decoded characters. As an example, C< $ACCENTS{'`'}->{a} eq 'à'>.
+the decoded characters. As an example, C<< $ACCENTS{'`'}->{a} eq 'à' >>.
 
 =cut
 

@@ -7,9 +7,9 @@ package LaTeX::ToUnicode;
 
   use LaTeX::ToUnicode qw( convert );
 
-  convert( '{\"a}'            ) eq 'ä';  # true
-  convert( '"a"', german => 1 ) eq 'ä';  # true, `german' package syntax
-  convert( '"a"',             ) eq '"a"'; # not enabled by default
+  convert( '{\"a}'           ) eq 'ä';  # true
+  convert( '"a', german => 1 ) eq 'ä';  # true, `german' package syntax
+  convert( '"a',             ) eq '"a'; # not enabled by default
 
 =head1 DESCRIPTION
 
