@@ -1,6 +1,8 @@
 Changes for LaTeX::ToUnicode
 
 $(NEXT)
+        Handle accents with \i
+        Add script used to generate accents table
 
 0.01    2010/07/09
         First release.
