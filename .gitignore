@@ -4,3 +4,4 @@
 LaTeX-ToUnicode-*
 .build
 tmp
+script/UnicodeData.txt
