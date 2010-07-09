@@ -67,8 +67,8 @@ sub convert {
 
 sub _convert_accents {
     my $string = shift;
-    $string =~ s/({\\(.){(\w{1,2})}})/$LaTeX::ToUnicode::Tables::ACCENTS{$2}{$3} || $1/eg; # {\"{a}}
-    $string =~ s/({\\(.)(\w{1,2})})/$LaTeX::ToUnicode::Tables::ACCENTS{$2}{$3} || $1/eg; # {\"a}
+    $string =~ s/({\\(.){(\\?\w{1,2})}})/$LaTeX::ToUnicode::Tables::ACCENTS{$2}{$3} || $1/eg; # {\"{a}}
+    $string =~ s/({\\(.)(\\?\w{1,2})})/$LaTeX::ToUnicode::Tables::ACCENTS{$2}{$3} || $1/eg; # {\"a}
     $string;
 }
 
