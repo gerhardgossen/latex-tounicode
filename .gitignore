@@ -3,3 +3,4 @@
 *.tar.gz
 LaTeX-ToUnicode-*
 .build
+tmp
