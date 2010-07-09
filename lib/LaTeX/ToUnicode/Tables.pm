@@ -5,16 +5,36 @@ use warnings;
 
 use utf8;
 
+=head1 CONSTANTS
+
+=head2 %COMMANDS
+
+Names of argument-less commands like C<\LaTeX> as keys.
+Values are the replacements.
+
+=cut
+
 our %COMMANDS = (
     'LaTeX'     => 'LaTeX',
     'TeX'     => 'TEX',
     '-'         => '', # hypenation
     '/'         => '', # italic correction
     'log'       => 'log',
-    'i'         => chr(0x131), # small dotless i
 );
 
+=head2 @SPECIALS
+
+TeX's metacharacters that need to be escaped in TeX documents
+
+=cut
+
 our @SPECIALS = ( qw( $ % & _ { } ), '#' );
+
+=head2 %SYMBOLS
+
+Predefined escape commands for extended characters.
+
+=cut
 
 our %SYMBOLS = ( # Table 3.2 in Lamport
     'aa'	=> 'å',
@@ -25,6 +45,7 @@ our %SYMBOLS = ( # Table 3.2 in Lamport
     'DH'	=> 'Ð',
     'dj'	=> 'đ',
     'DJ'	=> 'Ð',
+    'i'         => chr(0x131), # small dotless i
     'l'	        => 'ł',
     'L'	        => 'Ł',
     'ng'	=> 'ŋ',
@@ -39,6 +60,15 @@ our %SYMBOLS = ( # Table 3.2 in Lamport
     'TH'	=> 'Þ',
     'TM'        => chr(0x2122),
 );
+
+=head2 %ACCENTS
+
+Two-level hash of accented characters like C<\'{a}>. The keys of this hash
+are the accent symbols, e.g C<`>, C<"> or C<'>. The corresponding values are
+references to hashes, where the keys are the base letters and the values are
+the decoded characters. As an example, C< $ACCENTS{'`'}->{a} eq 'à'>.
+
+=cut
 
 our %ACCENTS = (
   "\"" => {
@@ -380,6 +410,16 @@ our %ACCENTS = (
   }
 );
 
+=head2 %GERMAN
+
+Escape sequences as defined by the package `german'/`ngerman', e.g.
+C<"a> (a with umlaut), C<"s> (german sharp s) or C<"`"> (german left quote).
+Note the missing backslash.
+
+The keys of this hash are the literal escape sequences.
+
+=cut
+
 our %GERMAN = ( # for package `german'/`ngerman'
     '"a'	=> 'ä',
     '"A'	=> 'Ä',
@@ -411,6 +451,12 @@ our %GERMAN = ( # for package `german'/`ngerman'
     '\frqq'     => '»',
     '\dq'       => '"',
 );
+
+=head2 @MARKUPS
+
+Command names of formatting commands like C<\tt>
+
+=cut
 
 our @MARKUPS = ( qw( em tt small sl bf sc rm it cal ) );
 

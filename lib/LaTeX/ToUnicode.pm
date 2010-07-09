@@ -3,6 +3,27 @@ use warnings;
 package LaTeX::ToUnicode;
 #ABSTRACT: Convert LaTeX commands to Unicode
 
+=head1 SYNOPSIS
+
+  use LaTeX::ToUnicode qw( convert );
+
+  convert( '{\"a}'            ) eq 'ä';  # true
+  convert( '"a"', german => 1 ) eq 'ä';  # true, `german' package syntax
+  convert( '"a"',             ) eq '"a"'; # not enabled by default
+
+=head1 DESCRIPTION
+
+This module provides a method to convert LaTeX-style markups for accents etc.
+into their Unicode equivalents. It translates commands for special characters
+or accents into their Unicode equivalents and removes formatting commands.
+
+I use this module to convert values from BibTeX files into plain text, if your
+use case is different, YMMV.
+
+In contrast to L<TeX::Encode>, this module does not create HTML of any kind.
+
+=cut
+
 require Exporter;
 our @ISA = qw(Exporter);
 our @EXPORT_OK = qw( convert );
@@ -10,7 +31,25 @@ our @EXPORT_OK = qw( convert );
 use utf8;
 use LaTeX::ToUnicode::Tables;
 
-=method convert( $string, %options )
+=head1 FUNCTIONS
+
+=head2 convert( $string, %options )
+
+Convert the text in C<$string> that contains LaTeX into a plain(er) Unicode
+string. All escape sequences for special characters (e.g. \i, \"a, ...) are
+converted, formatting commands (e.g. {\it ...}) are removed.
+
+C<%options> allows you to enable additional translations. This values are
+recognized:
+
+=over
+
+=item C<german>
+
+If true, the commands introduced by the package `german' (e.g. C<"a> eq C<ä>,
+note the missing backslash) are also handled.
+
+=back
 
 =cut
 
@@ -67,7 +106,7 @@ sub _convert_symbols {
 
     foreach my $symbol ( keys %LaTeX::ToUnicode::Tables::SYMBOLS ) {
         $string =~ s/{\\$symbol}/$LaTeX::ToUnicode::Tables::SYMBOLS{$symbol}/g;
-        $string =~ s/\\$symbol/$LaTeX::ToUnicode::Tables::SYMBOLS{$symbol}/g;
+        $string =~ s/\\$symbol\b/$LaTeX::ToUnicode::Tables::SYMBOLS{$symbol}/g;
     }
     $string;
 }
