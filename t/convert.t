@@ -130,3 +130,4 @@ __DATA__
 {\v{Z}}	Ž
 {\'y}	ý
 {\.{z}}	ż
+Herv{\`e} Br{\"o}nnimann	Hervè Brönnimann

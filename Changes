@@ -1,6 +1,7 @@
 Changes for LaTeX::ToUnicode
 
 {{$NEXT}}
+        Specify minimal perl version (5.8.0)  for UTF-8 support
 
 0.02    2010/07/09
         Handle accents with \i
